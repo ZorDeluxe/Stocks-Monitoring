@@ -31,7 +31,7 @@ class Benjamin(Stock):
         self.__keyStatistics()
 
 
-    def evaluate(self, MOS: float=35) -> tuple:
+    def evaluate(self, MOS: float=35) -> bool:
         """
         Evaluation of the Benjamin Model to determine if investing
         in the stock is profitable in the future
@@ -40,7 +40,7 @@ class Benjamin(Stock):
             MOS (float): Margin of Safety (Default = 35%)
 
         Returns:
-            Tuple: Suggest user to invest in the stock
+            bool: Suggest user to invest in the stock
         """
         # Calculates the Intrinisc Value
         self.get_intrinsic_value()

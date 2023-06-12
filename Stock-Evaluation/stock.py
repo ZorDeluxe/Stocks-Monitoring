@@ -37,7 +37,7 @@ class Stock:
         Returns:
             float: Stock's current value
         """
-        self.currentPrice = self.info['currentPrice']
+        self.currentPrice = self.yf_stock.info['currentPrice']
         return self.currentPrice
 
 
@@ -47,7 +47,7 @@ class Stock:
         Returns:
             float: Earnings Per Share
         """
-        self.eps = self.info['trailingEps']
+        self.eps = self.yf_stock.info['trailingEps']
         return self.eps
     
 
@@ -65,6 +65,16 @@ class Stock:
         self.growthRate = float(growth_str)
         
         return self.growthRate
+    
+
+    def get_sharesOutstanding(self) -> float:
+        """ Returns the stocks shares oustanding
+
+        Returns:
+            float: Shares outstanding
+        """
+        self.sharesOustanding = self.yf_stock.info['sharesOutstanding']
+        return self.sharesOustanding
 
 
     def get_dividends(self) -> DataFrame:
