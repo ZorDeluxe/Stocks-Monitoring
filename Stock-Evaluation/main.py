@@ -8,7 +8,7 @@ from Quantitive.DCF import DCF
 import csv
 if __name__ == "__main__":
     stocks = ['GOOG', 'MSFT', 'TSLA', 'AAPL', 'AIR.NZ', 'AMZN', 'ANZ.NZ', 'C', 'CROX', 'ENPH', 'INTC', 'META', 'NKE', 'NVDA', 'PYPL', 'PG', 'CRM', 'SPK.NZ', 'DIS']
-    stock = 'AAPL'
+    stock = 'MSFT'
     # Benjamin
     # for stock in stocks:
     i = Benjamin(stock, True)

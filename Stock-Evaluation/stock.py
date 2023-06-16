@@ -37,7 +37,7 @@ class Stock:
         Returns:
             float: Stock's current value
         """
-        self.currentPrice = self.yq_stock.financial_data['currentPrice']
+        self.currentPrice = self.yq_stock.financial_data[self.name]['currentPrice']
         return self.currentPrice
 
 
@@ -73,7 +73,7 @@ class Stock:
         Returns:
             float: Shares outstanding
         """
-        self.sharesOustanding = self.yq_stock.key_stats['sharesOutstanding']
+        self.sharesOustanding = self.yq_stock.key_stats[self.name]['sharesOutstanding']
         return self.sharesOustanding
 
 
@@ -124,7 +124,3 @@ class Stock:
         """
         return self.yq_stock.income_statement(frequency)
     
-
-if __name__ == "__main__":
-    msft = Stock('MSFT')
-    print(msft.yq_stock.financial_data)

@@ -18,7 +18,7 @@ class Lynch(Stock):
         self.name = name
 
 
-    def evaluate(self) -> tuple(float, str):
+    def evaluate(self) -> tuple:
         """ 
         Evaluation of the Lynch Model to determine if investing
         in the stock is profitable in the future
@@ -36,7 +36,10 @@ class Lynch(Stock):
         """
         # Get key statistics
         g, pe, div = self.__key_statistics()
-        fair_value = (g + div)/pe
+        try:
+            fair_value = (g + div)/pe
+        except ZeroDivisionError:   # PE is unidentified
+            return 0, 'Invalid'
 
         if fair_value < 1.25:
             value = 'Overvalued'
@@ -69,8 +72,11 @@ class Lynch(Stock):
         web = Webscraping()
 
         # Price to Earning Ratio
-        result = web.extract_value(url, pe_ratio_css)
-        pe_ratio = float(result)
+        try:
+            result = web.extract_value(url, pe_ratio_css)
+            pe_ratio = float(result)
+        except ValueError:
+            pe_ratio = 0
 
         # Dividend Yield
         try:

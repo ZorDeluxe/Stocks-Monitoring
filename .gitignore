@@ -1,2 +1,5 @@
 # Directory
 env/
+
+# Testing Python files
+test*.py
