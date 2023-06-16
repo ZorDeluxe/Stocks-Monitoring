@@ -3,3 +3,6 @@ env/
 
 # Testing Python files
 test*.py
+
+# Ignore CSV files
+*.csv
