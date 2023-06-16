@@ -62,3 +62,23 @@ class Webscraping:
             result.append(value.text)
 
         return result
+    
+    def extract_value(self, url:str, css_element:str) -> list:
+        """
+        Extracts the value from the given HTML element found 
+        in the url
+
+        Args:
+            url (str): Website of interest
+            css_element (str): Html Element to be dissected
+
+        Returns:
+            list: List of values found in the element
+        """
+        # Gets page
+        self.browser.get(url)
+        
+        # Extract the value from element and store into a list
+        value = self.browser.find_element(By.CSS_SELECTOR, css_element)
+
+        return value.text
