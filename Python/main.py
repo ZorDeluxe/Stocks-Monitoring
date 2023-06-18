@@ -1,7 +1,6 @@
 """
 Main.py
 """
-from stock import Stock
 from Quantitive.Benjamin import Benjamin
 from Quantitive.DCF import DCF
 
