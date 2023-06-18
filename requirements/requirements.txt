@@ -1,5 +1,21 @@
-yfinance
+###### Yahoo Finance API ######
+yahoo-fin>=0.8.9.1      # Known working state
+yahooquery>=2.3.1       # Known working state
+yfinance>=0.1.83        # Fixed decrypting issue
+
+###### Common python packages ######
 pandas
 numpy
-yahoo_fin
-selenium
+
+###### Webscraping ######
+selenium>=4.10.0
+
+###### Graphical User Interface ######
+customtkinterclear
+
+###### Code formatting ######
+pylint
+autopep8
+
+# To install:
+# pip install -r requirements/requirements.txt
