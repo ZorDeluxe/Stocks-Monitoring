@@ -6,8 +6,16 @@ Description: Benjamin Graham model to calculate the
 Author: Zoren Dela Cruz
 Created: 06-06-2023
 """
+import sys
+import os
+
+# Importing modules 
+script_dir = os.path.dirname(__file__)
+webscrapes_dir = os.path.join(script_dir, '..', '..', 'Webscrapes')
+sys.path.append(webscrapes_dir)
+
 from stock import Stock
-from Webscrapes.webscraper import Webscraping
+from Helper.webscraper import Webscraping
 
 
 class Benjamin(Stock):

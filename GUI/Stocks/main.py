@@ -13,6 +13,6 @@ if __name__ == "__main__":
         j = DCF(stock)
         purchase = i.evaluate(25)
         purchase2 = j.evaluate(25)
-        print(stock)
+        print(i.name)
         print(f'{i.currentPrice:.2f} | Intrinsic Value: {i.intrinsic_value:.2f} | Acceptable Buy Price: {i.accept_buy_price:.2f} | Buy: {purchase} ')
         print(f'{j.currentPrice:.2f} | Intrinsic Value: {j.intrinsic_value:.2f} | Acceptable Buy Price: {j.accept_buy_price:.2f} | Buy: {purchase2} ')
