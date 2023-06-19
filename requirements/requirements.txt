@@ -6,12 +6,13 @@ yfinance>=0.1.83        # Fixed decrypting issue
 ###### Common python packages ######
 pandas
 numpy
+matplotlib
 
 ###### Webscraping ######
 selenium>=4.10.0
 
 ###### Graphical User Interface ######
-customtkinterclear
+customtkinter
 
 ###### Code formatting ######
 pylint

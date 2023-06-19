@@ -124,3 +124,20 @@ class Stock:
         """
         return self.yq_stock.income_statement(frequency)
     
+
+    def get_price_history(self, period: str='2y') -> DataFrame:
+        """ Gives the historical price data
+
+        Args:
+            period (str, optional): Period options = 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y, ytd, max. 
+                                    Defaults to '2y'.
+
+        Returns:
+            DataFrame: Stock historical price data
+        """
+        return self.yf_stock.history(period)['Close']
+    
+if __name__ == "__main__":
+    msft = Stock('MSFT')
+    test = msft.get_price_history()
+    print(test)
