@@ -15,7 +15,7 @@ class MainApplication(ctk.CTk):
         # Core Setup
         super().__init__()
         self.title("Stocks Monitor")
-        self.geometry('1200x800')
+        self.geometry('800x600')
         self.resizable(False, False)        # Application not resizable
 
         # Stock Graphs
