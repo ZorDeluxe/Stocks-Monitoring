@@ -2,6 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 
 from Frames.chartFrame import ChartFrame
+from Frames.selectFrame import SelectFrame
 
 ctk.set_appearance_mode("light")
 
@@ -18,8 +19,9 @@ class MainApplication(ctk.CTk):
         self.geometry('800x600')
         self.resizable(False, False)        # Application not resizable
 
-        # Stock Graphs
-        self.chartframe = ChartFrame(self)
+        # Create Frames
+        self.selectFrame = SelectFrame(self)
+        self.chartFrame = ChartFrame(self)
 
         # Continous Loop
         self.mainloop()
