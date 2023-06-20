@@ -3,8 +3,10 @@ import customtkinter as ctk
 
 from Frames.chartFrame import ChartFrame
 from Frames.selectFrame import SelectFrame
+from Frames.statisticsFrame import StatsFrame
+from Frames.analysisFrame import AnalysisFrame
 
-ctk.set_appearance_mode("light")
+ctk.set_appearance_mode("Dark")
 
 
 class MainApplication(ctk.CTk):
@@ -16,12 +18,14 @@ class MainApplication(ctk.CTk):
         # Core Setup
         super().__init__()
         self.title("Stocks Monitor")
-        self.geometry('800x600')
+        self.geometry('800x800')
         self.resizable(False, False)        # Application not resizable
 
         # Create Frames
         self.selectFrame = SelectFrame(self)
+        self.statsFrame = StatsFrame(self)
         self.chartFrame = ChartFrame(self)
+        self.analysisFrame = AnalysisFrame(self)
 
         # Continous Loop
         self.mainloop()

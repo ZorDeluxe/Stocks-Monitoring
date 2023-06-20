@@ -12,7 +12,7 @@ class ChartFrame(ctk.CTkFrame):
 
     def __init__(self, parent):
         super().__init__(parent)
-        self.place(x=240, y=0, relwidth=0.70, relheight=0.8)
+        self.place(x=240, y=100, relheight=0.75, relwidth=0.7)
 
         # Create Chart Tabs
         plt.style.use('ggplot')
@@ -20,7 +20,7 @@ class ChartFrame(ctk.CTkFrame):
 
     def Charts(self, stock: str='MSFT'):
         tabView = ctk.CTkTabview(self)
-        tabView.pack(padx=0, pady=0, side=tk.RIGHT, fill=tk.BOTH, expand=True)
+        tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
         tab_names = ['1mo', '3mo', '6mo', '1y', '5y', 'max']
         self.tab_dict = {}
