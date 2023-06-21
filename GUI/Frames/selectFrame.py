@@ -64,10 +64,11 @@ class SelectFrame(ctk.CTkFrame):
 
         menuLabel = ctk.CTkLabel(self.menuFrame,
                                  text='Shortcut',
-                                 width=150,
+                                 width=75,
                                  height=20,
-                                 font=('Arial', 15))
-        menuLabel.place(x=0, y=10)
+                                 font=('Arial', 15), 
+                                 justify='left')
+        menuLabel.place(x=10, y=10)
 
         self.stockMenu_var = ctk.StringVar(value=self.stocks_list[0])
         self.optionMenu = ctk.CTkOptionMenu(self.menuFrame,
