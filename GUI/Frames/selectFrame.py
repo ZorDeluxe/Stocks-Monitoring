@@ -92,7 +92,7 @@ class SelectFrame(ctk.CTkFrame):
         Args:
             selection (str): Selected Stock from Option Menu
         """
-        self.stockWanted = selection
+        self.stock_wanted = selection
 
     def __add_button_event(self):
         """
@@ -112,4 +112,4 @@ class SelectFrame(ctk.CTkFrame):
         if (event == 0):
             self.stock_name = self.stockEntry.get()
         else:
-            self.stock_name = self.stockWanted
+            self.stock_name = self.stock_wanted
