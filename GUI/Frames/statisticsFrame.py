@@ -8,3 +8,4 @@ class StatsFrame(ctk.CTkFrame):
         super().__init__(parent, fg_color = 'red', height=600, width=240)
         self.place(x=0, y=100)
 
+

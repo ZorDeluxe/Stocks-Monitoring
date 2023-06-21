@@ -7,6 +7,7 @@ from Frames.statisticsFrame import StatsFrame
 from Frames.analysisFrame import AnalysisFrame
 
 ctk.set_appearance_mode("Dark")
+ctk.set_default_color_theme("blue")
 
 
 class MainApplication(ctk.CTk):
@@ -22,13 +23,13 @@ class MainApplication(ctk.CTk):
         self.resizable(False, False)        # Application not resizable
 
         # Create Frames
-        self.selectFrame = SelectFrame(self)
-        self.statsFrame = StatsFrame(self)
-        self.chartFrame = ChartFrame(self)
-        self.analysisFrame = AnalysisFrame(self)
+        selectFrame = SelectFrame(self)        
+        statsFrame = StatsFrame(self)
+        chartFrame = ChartFrame(self)
+        analysisFrame = AnalysisFrame(self)
 
         # Continous Loop
         self.mainloop()
         
 if __name__ == "__main__":
-    MainApplication()
+    MainApplication() 
