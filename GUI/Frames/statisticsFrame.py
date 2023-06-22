@@ -13,9 +13,8 @@ class StatsFrame(ctk.CTkFrame):
 
         super().__init__(parent,            # Creates the frame
                          height=598, 
-                         width=240,
-                         border_width=2)
-        self.place(x=0, y=102)
+                         width=240)
+        self.place(x=560, y=102)
 
         ####################################################
         #                     Heading                      #

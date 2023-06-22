@@ -14,8 +14,8 @@ script_dir = os.path.dirname(__file__)
 webscrapes_dir = os.path.join(script_dir, '..', '..', 'Webscrapes')
 sys.path.append(webscrapes_dir)
 
-from stock import Stock
-from Helper.webscraper import Webscraping
+from Stocks.stock import Stock
+from Stocks.Helper.webscraper import Webscraping
 
 
 class Lynch(Stock):
@@ -58,7 +58,7 @@ class Lynch(Stock):
         else:
             value = 'Very Under Valued'
         
-        return fair_value, value
+        return round(fair_value, 2), value
 
 
     def __key_statistics(self) -> tuple:

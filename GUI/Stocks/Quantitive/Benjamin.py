@@ -14,8 +14,8 @@ script_dir = os.path.dirname(__file__)
 webscrapes_dir = os.path.join(script_dir, '..', '..', 'Webscrapes')
 sys.path.append(webscrapes_dir)
 
-from stock import Stock
-from Helper.webscraper import Webscraping
+from Stocks.stock import Stock
+from Stocks.Helper.webscraper import Webscraping
 
 
 class Benjamin(Stock):
@@ -39,7 +39,7 @@ class Benjamin(Stock):
         self.__keyStatistics()
 
 
-    def evaluate(self, MOS: float=35) -> bool:
+    def evaluate(self, MOS: float=35) -> tuple:
         """
         Evaluation of the Benjamin Model to determine if investing
         in the stock is profitable in the future
@@ -48,7 +48,7 @@ class Benjamin(Stock):
             MOS (float): Margin of Safety (Default = 35%)
 
         Returns:
-            bool: Suggest user to invest in the stock
+            tuple: Suggest user to invest in the stock
         """
         # Calculates the Intrinisc Value
         self.get_intrinsic_value()
@@ -61,9 +61,9 @@ class Benjamin(Stock):
 
         # Determine if stock should be bought
         if self.accept_buy_price > self.currentPrice:
-            return True
+            return True, round(self.intrinsic_value, 2)
         else:
-            return False
+            return False, round(self.intrinsic_value, 2)
 
 
     def get_intrinsic_value(self) -> float:

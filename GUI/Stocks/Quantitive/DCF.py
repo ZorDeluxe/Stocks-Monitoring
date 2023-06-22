@@ -6,7 +6,7 @@ Description: Benjamin Graham model to calculate the
 Author: Zoren Dela Cruz
 Created: 06-06-2023
 """
-from stock import Stock
+from Stocks.stock import Stock
 
 class DCF(Stock):
     """ Discount Cash Flow Class """
@@ -42,9 +42,9 @@ class DCF(Stock):
 
         # Determine if stock should be bought
         if self.accept_buy_price > self.get_currentPrice():
-            return True
+            return True, round(self.intrinsic_value, 2)
         else:
-            return False
+            return False, round(self.intrinsic_value, 2)
 
 
     def get_intrinsic_value(self) -> float:
@@ -73,17 +73,14 @@ class DCF(Stock):
             float: Average growth rate
         """
         free_cashflow = self.get_cash_flow()['FreeCashFlow'][:-2]
-        print(free_cashflow)
         total_growth_rate = 0
 
         for i in range(1, len(free_cashflow)):
             growth_rate = (free_cashflow[i] - free_cashflow[i-1]) / free_cashflow[i]
-            print(growth_rate)
             total_growth_rate += growth_rate
             
             
         average_growth_rate = total_growth_rate / len(free_cashflow)
-        print(average_growth_rate)
 
         return average_growth_rate
     
@@ -120,8 +117,6 @@ class DCF(Stock):
             pv_cash_flow = predict_cash_flow / ((1+discount_rate) ** (i+1))
             pv_ffcf_list.append(pv_cash_flow)
             sum_pv_ffcf += pv_cash_flow
-
-        print(sum_pv_ffcf)
 
         return sum_pv_ffcf
 

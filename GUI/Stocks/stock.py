@@ -187,4 +187,4 @@ class Stock:
     
 if __name__ == "__main__":
     msft = Stock('MSFT')
-    print(msft.get_dividendPerShare())
+    print(msft.yq_stock.recommendation_trend)

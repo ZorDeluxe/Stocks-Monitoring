@@ -21,17 +21,17 @@ class ChartFrame(ctk.CTkFrame):
 
     def __init__(self, parent, stock_name):
         super().__init__(parent)
-        self.place(x=240, y=100, relheight=0.75, relwidth=0.7)
+        self.place(x=0, y=100, relheight=0.745, relwidth=0.7)
 
         # Create Chart Tabs
         plt.style.use('ggplot')
         self.Charts(stock_name)
 
     def Charts(self, stock_name: str='MSFT'):
-        tabView = ctk.CTkTabview(self)
+        tabView = ctk.CTkTabview(self, border_width=2)
         tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
-        tab_names = ['1mo', '3mo', '6mo', '1y', '5y', 'max']
+        tab_names = ['max', '1mo', '3mo', '6mo', '1y', '5y']
         tab_dict = {}
 
         for period in tab_names:
