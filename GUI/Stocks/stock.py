@@ -75,6 +75,46 @@ class Stock:
         """
         self.sharesOustanding = self.yq_stock.key_stats[self.name]['sharesOutstanding']
         return self.sharesOustanding
+    
+    
+    def get_priceToEarning(self) -> float:
+        """ Returns the price to earning ratio
+
+        Returns:
+            float: Price to Earning Ratio
+        """
+        self.peRatio = self.yq_stock.key_stats[self.name]['forwardPE']
+        return round(self.peRatio, 2)
+    
+
+    def get_priceToBook(self) -> float:
+        """ Returns the stocks price to book ratio
+
+        Returns:
+            float: P/B Ratio
+        """
+        self.pbRatio = self.yq_stock.key_stats[self.name]['priceToBook']
+        return round(self.pbRatio, 2)       # Round the value by 2dp for display
+
+
+    def get_pegRatio(self) -> float:
+        """ Returns the stock's PEG ratio
+
+        Returns:
+            float: PEG Ratio
+        """
+        self.pegRatio = self.yq_stock.key_stats[self.name]['pegRatio']
+        return self.pegRatio
+    
+
+    def get_debtToEquity(self) -> float:
+        """ Returns the Debt to Equity Ratio
+
+        Returns:
+            float: Debt to Equity Ratio
+        """
+        self.deRatio = self.yq_stock.financial_data[self.name]['debtToEquity']
+        return round(self.deRatio, 2)
 
 
     def get_dividends(self) -> DataFrame:
@@ -84,6 +124,14 @@ class Stock:
             DataFrame: Dividend History 
         """
         return yn.get_dividends(self.name)
+    
+
+    def get_dividendPerShare(self) -> float:
+        try:
+            divdends = yn.get_dividends(self.name)
+            return float(divdends['dividend'][-1])             # Latest Dividend per share
+        except:
+            return 0.0
 
 
     def get_cash_flow(self, frequency="a") -> DataFrame:
@@ -139,5 +187,4 @@ class Stock:
     
 if __name__ == "__main__":
     msft = Stock('MSFT')
-    test = msft.get_price_history()
-    print(test)
+    print(msft.get_dividendPerShare())
