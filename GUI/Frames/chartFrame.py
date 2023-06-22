@@ -19,15 +19,15 @@ def threaded(fn):
 class ChartFrame(ctk.CTkFrame):
     """ Chart Frame in Window Application """
 
-    def __init__(self, parent):
+    def __init__(self, parent, stock_name):
         super().__init__(parent)
         self.place(x=240, y=100, relheight=0.75, relwidth=0.7)
 
         # Create Chart Tabs
         plt.style.use('ggplot')
-        self.Charts()
+        self.Charts(stock_name)
 
-    def Charts(self, stock: str='MSFT'):
+    def Charts(self, stock_name: str='MSFT'):
         tabView = ctk.CTkTabview(self)
         tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
@@ -36,7 +36,7 @@ class ChartFrame(ctk.CTkFrame):
 
         for period in tab_names:
             tab_dict[period] = tabView.add(period)
-            self.createChart(tab_dict[period], stock, period)
+            self.createChart(tab_dict[period], stock_name, period)
 
     @threaded
     def createChart(self, tab, stock: str='MSFT', period: str='1y') -> None:

@@ -25,7 +25,7 @@ class MainApplication(ctk.CTk):
         # Create Frames
         selectFrame = SelectFrame(self)        
         statsFrame = StatsFrame(self, selectFrame.stock_name)
-        chartFrame = ChartFrame(self)
+        chartFrame = ChartFrame(self, selectFrame.stock_name)
         analysisFrame = AnalysisFrame(self)
 
         # Continous Loop
