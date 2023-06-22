@@ -1,4 +1,6 @@
 import tkinter as tk
+import threading
+
 import customtkinter as ctk
 
 from matplotlib.backends.backend_tkagg import (
@@ -6,6 +8,13 @@ from matplotlib.backends.backend_tkagg import (
 import matplotlib.pyplot as plt
 
 from Stocks.stock import Stock
+
+def threaded(fn):
+    def wrapper(*args, **kwargs):
+        thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
+        thread.start()
+        return thread
+    return wrapper
 
 class ChartFrame(ctk.CTkFrame):
     """ Chart Frame in Window Application """
@@ -23,12 +32,13 @@ class ChartFrame(ctk.CTkFrame):
         tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
         tab_names = ['1mo', '3mo', '6mo', '1y', '5y', 'max']
-        self.tab_dict = {}
+        tab_dict = {}
 
         for period in tab_names:
-            self.tab_dict[period] = tabView.add(period)
-            self.createChart(self.tab_dict[period], stock, period)
-        
+            tab_dict[period] = tabView.add(period)
+            self.createChart(tab_dict[period], stock, period)
+
+    @threaded
     def createChart(self, tab, stock: str='MSFT', period: str='1y') -> None:
         msft = Stock(stock)
         price = msft.get_price_history(period)
