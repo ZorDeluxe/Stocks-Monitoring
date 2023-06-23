@@ -31,9 +31,6 @@ class AnalysisFrame(ctk.CTkFrame):
     @threaded
     def __Benjamin_Model(self, stock_name):
 
-        benjamin = Benjamin(stock_name)
-        buy, value = benjamin.evaluate() 
-
         bjFrame = ctk.CTkFrame(self, 
                                height=100, 
                                width=196,
@@ -54,15 +51,6 @@ class AnalysisFrame(ctk.CTkFrame):
                                 font=('Arial', 10))
         intLabel.place(y=25, relwidth=1)
 
-        valueLabel = ctk.CTkLabel(bjFrame, 
-                             text=f'${value}',
-                             width=236,
-                             height=15,
-                             justify="center",
-                             font=("Arial", 12),
-                             text_color="#0ABAB5")
-        valueLabel.place(y=40, relwidth=1)
-
         div = ttk.Separator(bjFrame, 
                                 orient="horizontal")
         div.place(x=49, y=60, relwidth=0.5)
@@ -73,6 +61,18 @@ class AnalysisFrame(ctk.CTkFrame):
                                 height=15,
                                 font=('Arial', 10))
         buyingLabel.place(y=65, relwidth=1)
+
+        benjamin = Benjamin(stock_name)
+        buy, value = benjamin.evaluate() 
+
+        valueLabel = ctk.CTkLabel(bjFrame, 
+                             text=f'${value}',
+                             width=236,
+                             height=15,
+                             justify="center",
+                             font=("Arial", 12),
+                             text_color="#0ABAB5")
+        valueLabel.place(y=40, relwidth=1)
 
         buyLabel = ctk.CTkLabel(bjFrame, 
                              text=f'{buy}',
@@ -85,8 +85,6 @@ class AnalysisFrame(ctk.CTkFrame):
 
     @threaded
     def __DCF_Model(self, stock_name):
-        dcf = DCF(stock_name)
-        buy, value = dcf.evaluate() 
 
         dcfFrame = ctk.CTkFrame(self, 
                                height=100, 
@@ -108,15 +106,6 @@ class AnalysisFrame(ctk.CTkFrame):
                                 font=('Arial', 10))
         intLabel.place(y=25, relwidth=1)
 
-        valueLabel = ctk.CTkLabel(dcfFrame, 
-                             text=f'${value}',
-                             width=236,
-                             height=15,
-                             justify="center",
-                             font=("Arial", 12),
-                             text_color="#0ABAB5")
-        valueLabel.place(y=40, relwidth=1)
-
         div = ttk.Separator(dcfFrame, 
                                 orient="horizontal")
         div.place(x=49, y=60, relwidth=0.5)
@@ -127,6 +116,18 @@ class AnalysisFrame(ctk.CTkFrame):
                                 height=15,
                                 font=('Arial', 10))
         buyingLabel.place(y=65, relwidth=1)
+
+        dcf = DCF(stock_name)
+        buy, value = dcf.evaluate() 
+
+        valueLabel = ctk.CTkLabel(dcfFrame, 
+                             text=f'${value}',
+                             width=236,
+                             height=15,
+                             justify="center",
+                             font=("Arial", 12),
+                             text_color="#0ABAB5")
+        valueLabel.place(y=40, relwidth=1)
 
         buyLabel = ctk.CTkLabel(dcfFrame, 
                              text=f'{buy}',
@@ -139,8 +140,6 @@ class AnalysisFrame(ctk.CTkFrame):
 
     @threaded
     def __Lynch_Model(self, stock_name):
-        lynch = Lynch(stock_name)
-        fair_value, value = lynch.evaluate() 
 
         dcfFrame = ctk.CTkFrame(self, 
                             height=100, 
@@ -162,15 +161,6 @@ class AnalysisFrame(ctk.CTkFrame):
                                 font=('Arial', 10))
         intLabel.place(y=25, relwidth=1)
 
-        valueLabel = ctk.CTkLabel(dcfFrame, 
-                            text=f'{fair_value}',
-                            width=236,
-                            height=15,
-                            justify="center",
-                            font=("Arial", 12),
-                            text_color="#0ABAB5")
-        valueLabel.place(y=40, relwidth=1)
-
         div = ttk.Separator(dcfFrame, 
                                 orient="horizontal")
         div.place(x=49, y=60, relwidth=0.5)
@@ -181,6 +171,18 @@ class AnalysisFrame(ctk.CTkFrame):
                                 height=15,
                                 font=('Arial', 10))
         buyingLabel.place(y=65, relwidth=1)
+
+        lynch = Lynch(stock_name)
+        fair_value, value = lynch.evaluate() 
+
+        valueLabel = ctk.CTkLabel(dcfFrame, 
+                            text=f'{fair_value}',
+                            width=236,
+                            height=15,
+                            justify="center",
+                            font=("Arial", 12),
+                            text_color="#0ABAB5")
+        valueLabel.place(y=40, relwidth=1)
 
         buyLabel = ctk.CTkLabel(dcfFrame, 
                             text=f'{value}',
@@ -240,5 +242,7 @@ class AnalysisFrame(ctk.CTkFrame):
                              font=("Arial", 12),
                              text_color="#0ABAB5")
         buyLabel.place(y=80, relwidth=1)
+
+        
 
    
