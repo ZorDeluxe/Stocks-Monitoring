@@ -23,10 +23,12 @@ class MainApplication(ctk.CTk):
         self.resizable(False, False)        # Application not resizable
 
         # Create Frames
-        selectFrame = SelectFrame(self)        
-        statsFrame = StatsFrame(self, selectFrame.stock_name)
-        chartFrame = ChartFrame(self, selectFrame.stock_name)
-        analysisFrame = AnalysisFrame(self, selectFrame.stock_name)
+        statsFrame = StatsFrame(self, 'TSLA')
+        chartFrame = ChartFrame(self, 'TSLA')
+        analysisFrame = AnalysisFrame(self, 'TSLA')
+
+        selectFrame = SelectFrame(self, chartFrame, analysisFrame, statsFrame)        
+
 
         # Continous Loop
         self.mainloop()

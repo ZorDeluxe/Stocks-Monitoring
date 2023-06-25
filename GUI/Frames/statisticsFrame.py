@@ -204,4 +204,80 @@ class StatsFrame(ctk.CTkFrame):
         dividendDiv.place(x=48, y=530, relwidth=0.6)
 
 
+    def update_stats_frame(self, stock_name):
+        stock = Stock(stock_name)           # Gets stock information
+
+        nameLabel = ctk.CTkLabel(self, 
+                                text=stock_name,
+                                width=236,
+                                height=50,
+                                justify="center",
+                                font=('Arial', 20))
+        nameLabel.place(x=2, y=5)
+
+        price = ctk.CTkLabel(self, 
+                            text=stock.get_currentPrice(),
+                            width=236,
+                            height=20,
+                            justify="center",
+                            font=("Arial", 20),
+                            text_color="#0ABAB5")
+        price.place(x=2, y=80)
+
+        eps = ctk.CTkLabel(self, 
+                            text=stock.get_EPS(),
+                            width=236,
+                            height=20,
+                            justify="center",
+                            font=("Arial", 20),
+                            text_color="#0ABAB5")
+        eps.place(x=2, y=140)
+
+        growth = ctk.CTkLabel(self, 
+                            text=stock.get_growthRate(),
+                            width=236,
+                            height=20,
+                            justify="center",
+                            font=("Arial", 20),
+                            text_color="#0ABAB5")
+        growth.place(x=2, y=200)
+
+        pbRatio = ctk.CTkLabel(self, 
+                             text=stock.get_priceToBook(),
+                             width=236,
+                             height=20,
+                             justify="center",
+                             font=("Arial", 20),
+                             text_color="#0ABAB5")
+        pbRatio.place(x=2, y=320)
+
+        pegRatio = ctk.CTkLabel(self, 
+                             text=stock.get_pegRatio(),
+                             width=236,
+                             height=20,
+                             justify="center",
+                             font=("Arial", 20),
+                             text_color="#0ABAB5")
+        pegRatio.place(x=2, y=380)
+
+        deRatio = ctk.CTkLabel(self, 
+                             text=stock.get_debtToEquity(),
+                             width=236,
+                             height=20,
+                             justify="center",
+                             font=("Arial", 20),
+                             text_color="#0ABAB5")
+        deRatio.place(x=2, y=440)
+
+        dividend = ctk.CTkLabel(self, 
+                             text=stock.get_dividendPerShare(),
+                             width=236,
+                             height=20,
+                             justify="center",
+                             font=("Arial", 20),
+                             text_color="#0ABAB5")
+        dividend.place(x=2, y=500)
+
+
+
 

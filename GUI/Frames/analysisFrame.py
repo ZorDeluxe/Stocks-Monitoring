@@ -28,6 +28,17 @@ class AnalysisFrame(ctk.CTkFrame):
         self.__Lynch_Model(stock_name)
         self.__placeholder(stock_name)
 
+
+    def update_analysis_frame(self, stock_name) -> None:
+        """ Updates the analysis frame with new contents
+
+        Args:
+            stock_name (str): Stock name
+        """
+        self.__Benjamin_Model(stock_name)
+        self.__DCF_Model(stock_name)
+        self.__Lynch_Model(stock_name)
+
     @threaded
     def __Benjamin_Model(self, stock_name):
 

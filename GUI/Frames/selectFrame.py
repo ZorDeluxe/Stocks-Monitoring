@@ -1,6 +1,18 @@
 import tkinter as tk
 
 import customtkinter as ctk
+import threading
+
+from Frames.analysisFrame import AnalysisFrame
+from Frames.chartFrame import ChartFrame
+from Frames.statisticsFrame import StatsFrame
+
+def threaded(fn):
+    def wrapper(*args, **kwargs):
+        thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
+        thread.start()
+        return thread
+    return wrapper
 
 
 class SelectFrame(ctk.CTkFrame):
@@ -9,10 +21,15 @@ class SelectFrame(ctk.CTkFrame):
     stock_name = 'TSLA'
     stock_wanted = 'TSLA'
 
-    def __init__(self, parent):
+    def __init__(self, parent, chart: ChartFrame, analysis: AnalysisFrame, stats: StatsFrame):
         """ Instatiate the select Frame """
         super().__init__(parent, height=100, width=800)
         self.place(x=0, y=0)
+
+        # Frames to update
+        self.chart = chart
+        self.analysis = analysis
+        self.stats = stats
 
         ####################################################
         #                   Search Frame                   #
@@ -103,6 +120,7 @@ class SelectFrame(ctk.CTkFrame):
         self.stocks_list.append(stock_name)
         self.optionMenu.configure(values=self.stocks_list)
 
+    @threaded
     def __search_button_event(self, event: int) -> None:
         """ Updates the stock name depending on the frame
 
@@ -114,3 +132,10 @@ class SelectFrame(ctk.CTkFrame):
             self.stock_name = self.stockEntry.get()
         else:
             self.stock_name = self.stock_wanted
+
+        # Update frames
+        self.chart.updateCharts(self.stock_name)
+        self.analysis.update_analysis_frame(self.stock_name)
+        self.stats.update_stats_frame(self.stock_name)
+
+        

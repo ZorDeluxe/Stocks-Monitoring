@@ -28,15 +28,31 @@ class ChartFrame(ctk.CTkFrame):
         self.Charts(stock_name)
 
     def Charts(self, stock_name: str='MSFT'):
-        tabView = ctk.CTkTabview(self, border_width=2)
-        tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+        self.tabView = ctk.CTkTabview(self, border_width=2)
+        self.tabView.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
         tab_names = ['max', '1mo', '3mo', '6mo', '1y', '5y']
         tab_dict = {}
 
         for period in tab_names:
-            tab_dict[period] = tabView.add(period)
+            tab_dict[period] = self.tabView.add(period)
             self.createChart(tab_dict[period], stock_name, period)
+
+    def updateCharts(self, stock_name):
+        tab_names = ['max', '1mo', '3mo', '6mo', '1y', '5y']
+        tab_dict = {}
+
+        for period in tab_names:
+            self.tabView.delete(period)
+
+        for period in tab_names:
+            tab_dict[period] = self.tabView.add(period)
+
+        for period in tab_names:
+            self.createChart(tab_dict[period], stock_name, period)
+        
+
+
 
     @threaded
     def createChart(self, tab, stock: str='MSFT', period: str='1y') -> None:
