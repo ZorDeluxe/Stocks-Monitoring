@@ -51,9 +51,6 @@ class ChartFrame(ctk.CTkFrame):
         for period in tab_names:
             self.createChart(tab_dict[period], stock_name, period)
         
-
-
-
     @threaded
     def createChart(self, tab, stock: str='MSFT', period: str='1y') -> None:
         msft = Stock(stock)

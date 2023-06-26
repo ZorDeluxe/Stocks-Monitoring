@@ -17,7 +17,7 @@ def threaded(fn):
 
 class SelectFrame(ctk.CTkFrame):
     """ Select Frame to choose what stock to display """
-    stocks_list = ['TSLA']
+    stocks_list = {'TSLA'}
     stock_name = 'TSLA'
     stock_wanted = 'TSLA'
 
@@ -87,11 +87,11 @@ class SelectFrame(ctk.CTkFrame):
                                  justify='left')
         menuLabel.place(x=10, y=10)
 
-        self.stockMenu_var = ctk.StringVar(value=self.stocks_list[0])
+        self.stockMenu_var = ctk.StringVar(value=list(self.stocks_list)[0])
         self.optionMenu = ctk.CTkOptionMenu(self.menuFrame,
                                             width=150,
                                             height=35,
-                                            values=self.stocks_list,
+                                            values=list(self.stocks_list),
                                             command=self.__get_stock_option_selection,
                                             variable=self.stockMenu_var)
         self.optionMenu.place(x=50, y=45)
@@ -117,7 +117,7 @@ class SelectFrame(ctk.CTkFrame):
         Adds the stock of interest into option menu
         """
         stock_name = self.stockEntry.get()
-        self.stocks_list.append(stock_name)
+        self.stocks_list.add(stock_name)
         self.optionMenu.configure(values=self.stocks_list)
 
     @threaded
