@@ -6,8 +6,16 @@ Description: Benjamin Graham model to calculate the
 Author: Zoren Dela Cruz
 Created: 12-06-2023
 """
-from stock import Stock
-from Webscrapes.webscraper import Webscraping
+import sys
+import os
+
+# Importing modules 
+script_dir = os.path.dirname(__file__)
+webscrapes_dir = os.path.join(script_dir, '..', '..', 'Webscrapes')
+sys.path.append(webscrapes_dir)
+
+from Stocks.stock import Stock
+from Stocks.Helper.webscraper import Webscraping
 
 
 class Lynch(Stock):
@@ -50,7 +58,7 @@ class Lynch(Stock):
         else:
             value = 'Very Under Valued'
         
-        return fair_value, value
+        return round(fair_value, 2), value
 
 
     def __key_statistics(self) -> tuple:
