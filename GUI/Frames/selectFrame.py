@@ -54,13 +54,13 @@ class SelectFrame(ctk.CTkFrame):
                                        font=('Arial', 12))
         self.stockEntry.place(x=50, y=45)
 
-        searchButton = ctk.CTkButton(searchFrame,
+        self.searchButton = ctk.CTkButton(searchFrame,
                                      text='Search',
                                      width=75,
                                      height=35,
                                      hover_color='#bec7d4',
                                      command=lambda: self.__search_button_event(event=0))
-        searchButton.place(x=210, y=45)
+        self.searchButton.place(x=210, y=45)
 
         searchAddButton = ctk.CTkButton(searchFrame,
                                         text='Add',
@@ -96,13 +96,13 @@ class SelectFrame(ctk.CTkFrame):
                                             variable=self.stockMenu_var)
         self.optionMenu.place(x=50, y=45)
 
-        menuSearchButton = ctk.CTkButton(self.menuFrame,
+        self.menuSearchButton = ctk.CTkButton(self.menuFrame,
                                          text='Search',
                                          width=75,
                                          height=35,
                                          hover_color='#bec7d4',
                                          command=lambda: self.__search_button_event(event=1))
-        menuSearchButton.place(x=210, y=45)
+        self.menuSearchButton.place(x=210, y=45)
 
     def __get_stock_option_selection(self, selection: str) -> None:
         """ Gets the stock option selected
@@ -134,8 +134,23 @@ class SelectFrame(ctk.CTkFrame):
             self.stock_name = self.stock_wanted
 
         # Update frames
-        self.chart.updateCharts(self.stock_name)
-        self.analysis.update_analysis_frame(self.stock_name)
-        self.stats.update_stats_frame(self.stock_name)
+        self.searchButton.configure(state='disabled')
+        self.menuSearchButton.configure(state='disabled')
+
+
+        chartThread = threading.Thread(target=self.chart.updateCharts, args=(self.stock_name,))
+        analysisThread = threading.Thread(target=self.analysis.update_analysis_frame, args=(self.stock_name,))
+        statsThread = threading.Thread(target=self.stats.update_stats_frame, args=(self.stock_name,))
+
+        chartThread.start()
+        analysisThread.start()
+        statsThread.start()
+
+        chartThread.join()
+        analysisThread.join()
+        statsThread.join()
+        
+        self.searchButton.configure(state='normal')
+        self.menuSearchButton.configure(state='normal')
 
         
