@@ -27,7 +27,7 @@ class MainApplication(ctk.CTk):
         chartFrame = ChartFrame(self, 'TSLA')
         analysisFrame = AnalysisFrame(self, 'TSLA')
 
-        selectFrame = SelectFrame(self, chartFrame, analysisFrame, statsFrame)        
+        selectFrame = SelectFrame(self, chartFrame, analysisFrame, statsFrame)
 
 
         # Continous Loop

@@ -185,6 +185,3 @@ class Stock:
         """
         return self.yf_stock.history(period)['Close']
     
-if __name__ == "__main__":
-    msft = Stock('AAPL')
-    print(msft.get_price_history())
